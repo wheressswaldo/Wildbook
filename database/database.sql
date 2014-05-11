@@ -1,6 +1,6 @@
 #Setup db
 
-#drop database cs308proj;
+#drop database wildbook;
 create database wildbook;
 use wildbook;
 
