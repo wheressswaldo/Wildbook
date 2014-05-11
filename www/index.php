@@ -1,14 +1,13 @@
 <html>
 
 <?php
-/*
 require_once 'functions.php';
 
-$isLoggedIn= !checkLogin();
-if(!$isGuest){
+$isLoggedIn= checkLogin();
+if($isLoggedIn){
 	header("Location: home.php");
 }
-*/?>
+?>
 
 <head>
 	<title> Wildbook </title>
