@@ -1,8 +1,8 @@
 #Setup db
 
-drop database cs308proj;
-create database cs308proj;
-use cs308proj;
+#drop database cs308proj;
+create database wildbook;
+use wildbook;
 
 create table User 
 (

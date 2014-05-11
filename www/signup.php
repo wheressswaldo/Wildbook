@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Login - Wildbook</title>
+<title>Sign Up - Wildbook</title>
 </head>
 
 <?php 
@@ -12,6 +12,7 @@ $ErrorArray=array();
 if($_SERVER['REQUEST_METHOD']=='POST') {
     $username=isset($_POST['username']) ? $_POST['username'] : '';
     $password=isset($_POST['password']) ? $_POST['password'] : '';
+	$verify=isset($_POST['verify']) ? $_POST['verify'] : '';
 
 	if (empty($username)){
 		$have_error=true;
@@ -21,30 +22,41 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
 		$have_error=true;
         $ErrorArray[] = "Password is empty";
     }
+	else if (empty($verify)){
+		$have_error=true;
+		$ErrorArray[] = "Please verify your password!";
+	}
+	else if	($password !== $verify){
+		$have_error=true;
+        $ErrorArray[] = "Passwords do not match!";
+    }
 
 	if(!$have_error){
-		$result=mysqli_query($con, "select * from `user` where username='$username' and password='$password';");
-		if($result){
-			if($result->num_rows==1){
-				$row=$result->fetch_array();
-				session_start();
-				//$userid=$row['userid'];
-				$_SESSION['username']=$username;
-				//$_SESSION['userid']=$userid;
-				header( "Location: home.php");
-		
-			}
-		}
-		else{
-			$have_error = true;
-			$ErrorArray[] = "Username or password is incorrect.";
-		}
-    }
+	    $result=mysqli_query($con, " select * from `user` where username='$username';");
+	    if( $result->num_rows >0 ){
+			$have_error=true;
+			$ErrorArray[]='User already exists!!';
+	    }
+	}
+
 	if($have_error){
 		foreach ($ErrorArray AS $Errors){
             echo "<font color='red'><b>".$Errors."</font></b><br>";
         }
 	}
+
+	if( !$have_error){
+	    $insert=mysqli_query($con,"insert into `user`(username, password) values('$username','$password');");
+	    if($insert){
+		$userid = $con->insert_id;
+		session_start();
+		$_SESSION['username'] = $username;
+		$_SESSION['userid'] = $userid;
+		header( 'Location: home.php' );
+
+	    }
+	}
+
 }
 ?>
 
@@ -61,7 +73,12 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
             <label for="password">Password</label>
             <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="">
           </div>
-		  
+          
+          <div class="form-group">
+            <label for="verify">Re-enter Password</label>
+            <input type="password" class="form-control" id="verify" name="verify" placeholder="Password" value="">
+          </div>
+        
           <button type="submit" value="Login" class="btn btn-default" name="login">Submit</button>
         </fieldset>
         </form>
