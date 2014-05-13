@@ -1,4 +1,4 @@
-use cs308proj;
+use wildbook;
 
 INSERT INTO User (username, password) VALUES 	
 		("bobjoe", unhex(md5("hunter1"))), 
@@ -7,6 +7,13 @@ INSERT INTO User (username, password) VALUES
 		("feliciaweathers", unhex(md5("12345678"))), 
 		("danielreid", unhex(md5("qwerty"))), 
 		("michaelsweeny", unhex(md5("abc123")));
+
+select user_create("bobjoe", "hunter1");
+select user_create("williammunoz", "123456");
+select user_create("soniawixom", "password");
+select user_create("feliciaweathers", "12345678");
+select user_create("danielreid", "qwerty");
+select user_create("michaelsweeny", "abc123");
 
 INSERT INTO friendsWith (username1, username2) VALUES 
 	("bobjoe", "soniawixom"), 
@@ -22,11 +29,11 @@ VALUES
 
 INSERT INTO Profile(username, firstname, lastname, profilepic, birthday, gender, city, description)
 VALUES
-("bobjoe", "Bob", "Joe", null, "1980-01-01", "M", "Santa Monica", "Hi I\"m Bob"), ("williammunoz", "William", "Munoz", null, "1981-02-02", "M", "El Segundo", "Hi I\"m William"), 
-("soniawixom", "Sonia", "Wixom", null, "1982-03-03", "F", "Los Angeles", "Hi I\"m Sonia"), 
-("feliciaweathers", "Felicia", "Weathers", null, "1983-04-04", "F", "New York", "Hi I\"m Felicia"), 
-("danielreid", "Daniel", "Reid", null, "1984-05-05", "M", "Asheville", "Hi I\"m Daniel"), 
-("michaelsweeny", "Michael", "Sweeny",null, "1985-06-06", "M", "Boston", "Hi I\"m Michael");
+("bobjoe", "Bob", "Joe", null, "1980-01-01", "1", "Santa Monica", "Hi I\"m Bob"), ("williammunoz", "William", "Munoz", null, "1981-02-02", "M", "El Segundo", "Hi I\"m William"), 
+("soniawixom", "Sonia", "Wixom", null, "1982-03-03", "2", "Los Angeles", "Hi I\"m Sonia"), 
+("feliciaweathers", "Felicia", "Weathers", null, "1983-04-04", "2", "New York", "Hi I\"m Felicia"), 
+("danielreid", "Daniel", "Reid", null, "1984-05-05", "1", "Asheville", "Hi I\"m Daniel"), 
+("michaelsweeny", "Michael", "Sweeny",null, "1985-06-06", "1", "Boston", "Hi I\"m Michael");
 
 
 INSERT INTO Location(locationName, longitude, latitude)
@@ -61,7 +68,6 @@ INSERT INTO likeEntry(userofEntry, diaryID, userWhoLikes)
 VALUES
 ("bobjoe", 1, "feliciaweathers");
 
-INSERT into text(username, diaryID, textContent) values("bobjoe", 1, "hello I like fishing");
 
 select * from activity;
 select * from comment;
@@ -74,5 +80,4 @@ select * from likeentry;
 select * from likelocation;
 select * from multimedia; #missing entry
 select * from profile;
-select * from text; #missing entry
 select * from user;

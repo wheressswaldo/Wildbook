@@ -47,5 +47,5 @@ begin
 end //
 delimiter ;
 
-select user_exists("Kevin");
-select user_exists("Kevin1");
+#select user_exists("Kevin");
+#select user_exists("Kevin1");

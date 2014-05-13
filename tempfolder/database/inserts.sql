@@ -1,4 +1,4 @@
---SQL Inserts for Test Data
+#SQL Inserts for Test Data
 
 INSERT INTO User (username, password) VALUES 	
 		("bobjoe", "hunter1"), 
