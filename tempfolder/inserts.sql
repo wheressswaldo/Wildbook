@@ -8,13 +8,6 @@ INSERT INTO User (username, password) VALUES
 		("danielreid", unhex(md5("qwerty"))), 
 		("michaelsweeny", unhex(md5("abc123")));
 
-select user_create("bobjoe", "hunter1");
-select user_create("williammunoz", "123456");
-select user_create("soniawixom", "password");
-select user_create("feliciaweathers", "12345678");
-select user_create("danielreid", "qwerty");
-select user_create("michaelsweeny", "abc123");
-
 INSERT INTO friendsWith (username1, username2) VALUES 
 	("bobjoe", "soniawixom"), 
 	("bobjoe", "feliciaweathers"), 
@@ -68,16 +61,3 @@ INSERT INTO likeEntry(userofEntry, diaryID, userWhoLikes)
 VALUES
 ("bobjoe", 1, "feliciaweathers");
 
-
-select * from activity;
-select * from comment;
-select * from diaryEntry;
-select * from friendrequest;
-select * from friendswith;
-select * from likeactivity;
-select * from likeactivityatlocation; #missing entry
-select * from likeentry;
-select * from likelocation;
-select * from multimedia; #missing entry
-select * from profile;
-select * from user;

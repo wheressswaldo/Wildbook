@@ -2,8 +2,8 @@
 
 drop database wildbook;
 create database wildbook;
-use wildbook;
 
+use wildbook;
 create table User 
 (
 	username varchar(128) not null unique,

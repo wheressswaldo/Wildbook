@@ -36,22 +36,23 @@
 			$stmt = "select * from profile where username='$username';";
 			$result=$con->query($stmt);
 			$row = $result->fetch_array();
-
+	
 			$firstname = $row[1];
 			$lastname = $row[2];
 			$gender = $row[5];
-			if($gender = "1") {$gendert = "Male";} else if($gender = "2") {$gendert = "Female";} else {$gendert = "";}
-			
+			if($gender == "1") {$gendert = "Male";} else if($gender == "2") {$gendert = "Female";} else {$gendert = "";}
+
 			$birthday = $row[4];
 			$city = $row[6];
 			$description = $row[7];
 			$profilepic = $row[3];
-			if($privacy ="1"){$privacyt="Public";}
-			else if($privacy ="2"){$privacyt="Friends or Friends of Friends";}
-			else if($privacy ="3"){$privacyt="Friends";}
-			else if($privacy ="4"){$privacyt="Private";}
-			else{$privacy="";}
 			$privacy = $row[8];
+			if($privacy =="1"){$privacyt="Public";}
+			else if($privacy =="2"){$privacyt="Friends or Friends of Friends";}
+			else if($privacy =="3"){$privacyt="Friends";}
+			else if($privacy =="4"){$privacyt="Private";}
+			else{$privacy="";}
+
 		}
 		
 		if($_SERVER['REQUEST_METHOD']=='POST'){
@@ -63,6 +64,13 @@
 			$city = $_POST['city'];
 			$description = $_POST['description'];
 			$privacy = $_POST['privacy'];
+			if($gender == "1") {$gendert = "Male";} else if($gender == "2") {$gendert = "Female";} else {$gendert = "";}
+			
+			if($privacy =="1"){$privacyt="Public";}
+			else if($privacy =="2"){$privacyt="Friends or Friends of Friends";}
+			else if($privacy =="3"){$privacyt="Friends";}
+			else if($privacy =="4"){$privacyt="Private";}
+			else{$privacy="";}
 			
 			if(!$existprofile and false){
 				$stmt = "insert into profile values('$username','$firstname','$lastname','$profilepic','$birthday','$gender','$city','$description','$privacy');";
@@ -119,8 +127,6 @@
 			</select><br>
 
 		<button type="submit" value="SaveProfile" name="editprofile" class="btn btn-primary">Save Profile</button><br>
-		
-		<a href='changePassword.php'>Change your password</a>
 	</form>
 </div>
 

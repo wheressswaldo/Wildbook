@@ -62,3 +62,4 @@ begin
 end //
 delimiter ;
 
+#update profile set firstname='Bob', lastname='Joe', profilepic=,birthday='1980-01-01',gender='1',city='Santa Monica',description='Hi I"m Boba',privacy='' where username='bobjoe'; 
