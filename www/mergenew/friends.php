@@ -7,10 +7,15 @@
 
 	if (!checkLogin()){
 		$have_error=true;
-		$ErrorArray[] = "Username is empty";
+		$ErrorArray[] = "You are not logged in.";
+		header("Location: index.php");
 	}
 	else {
 		$username = $_SESSION['username'];
+		if(isset($_GET["username"]))
+		{
+			$username = $_GET["username"];
+		}
 
 		$stmt =	 	"(SELECT username2 as friends
 					FROM FriendsWith 
