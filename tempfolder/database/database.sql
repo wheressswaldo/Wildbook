@@ -1,6 +1,6 @@
 #Setup db
 
-#drop database wildbook;
+drop database wildbook;
 create database wildbook;
 use wildbook;
 
@@ -29,18 +29,31 @@ create table friendRequest
 	foreign key(usernameTo) references User(username)
 );
 
+create table MultiMedia
+(
+	username varchar(64) not null,
+	multimediaID int not null auto_increment,
+	mediaType varchar(5) not null, 
+	mediaName varchar(64) not null,
+	mediaDesc varchar(512) null,
+	primary key(multimediaID),
+	foreign key(username) references User(username)
+);
+
 create table Profile
 (
 	username varchar(128) not null unique,
 	firstname varchar(64) not null,
 	lastname varchar(64) not null,
-	profilepic blob null,
-	birthday datetime null,
+	profilepic int null,
+	birthday date null,
 	gender varchar(1) null,
 	city varchar(64) null,
 	description varchar (512) null,
+	privacy varchar(1) null,
 	primary key(username),
-	foreign key(username) references User(username)
+	foreign key(username) references User(username),
+	foreign key(profilepic) references Multimedia(multimediaID)
  );
 
 create table Location
@@ -65,15 +78,17 @@ create table DiaryEntry
 	diaryID int not null auto_increment,
 	activityID int not null,
 	locationID int not null,
+	multimediaID int null,
 	diaryTitle varchar(128) not null,
 	diaryDesc varchar(512) null,
 	timeposted datetime not null,
 	lastedited datetime null,
-	privacySetting varchar(64) not null,
+	privacySetting varchar(1) not null,
 	primary key(diaryID),
 	foreign key(username) references User(username),
 	foreign key(activityID) references Activity(activityID),
-	foreign key(locationID) references Location(locationID)
+	foreign key(locationID) references Location(locationID),
+	foreign key(multimediaID) references Multimedia(multimediaID)
 );
 
 create table Comment
@@ -89,28 +104,6 @@ create table Comment
 	foreign key(userofEntry, diaryID) references DiaryEntry(username, diaryID),
 	foreign key(userofComment) references User(username)
 );
-
-create table Text
-(	
-	username varchar(64) not null,
-	diaryID int not null unique,
-	textContent varchar(512) null,
-	primary key(username, diaryID),
-	foreign key(username, diaryID) references DiaryEntry(username, diaryID)
-);
-
-create table MultiMedia
-(
-	username varchar(64) not null,
-	diaryID int not null unique,
-	mediaType varchar(5) not null, 
-	mediaTitle varchar(64) not null,
-	mediaDesc varchar(512) null,
-	mediaContent blob null,
-	primary key(username, diaryID),
-	foreign key(username, diaryID) references DiaryEntry(username, diaryID)
-);
-
 
 create table likeLocation
 (

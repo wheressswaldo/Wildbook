@@ -55,23 +55,25 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
 	}
 }
 ?>
-<form method ="POST" id="signup">
-	<fieldset>
-	  <div class="form-group">
-		<!--<label for="username">USERNAME</label>-->
-		<input type="text" class="form-control" id = "username" name="username" placeholder="Username" value="">
-	  </div>
-	  <div class="form-group">
-		<!--<label for="password">Password</label>-->
-		<input type="password" class="form-control" id="password" name="password" placeholder="Password" value="">
-	  </div>
-	  
-	  <div class="form-group">
-		
-		<!--<label for="verify">Re-enter Password</label>-->
-		<input type="password" class="form-control" id="verify" name="verify" placeholder="Verify Password" value="">
-	  </div>
+<div>
+	<form method ="POST" id="signup">
+		<fieldset>
+		  <div class="form-group">
+			<!--<label for="username">USERNAME</label>-->
+			<input type="text" class="form-control" id = "username" name="username" placeholder="Username" value="">
+		  </div>
+		  <div class="form-group">
+			<!--<label for="password">Password</label>-->
+			<input type="password" class="form-control" id="password" name="password" placeholder="Password" value="">
+		  </div>
+		  
+		  <div class="form-group">
+			
+			<!--<label for="verify">Re-enter Password</label>-->
+			<input type="password" class="form-control" id="verify" name="verify" placeholder="Verify Password" value="">
+		  </div>
 
-	  <button type="submit" value="Login" class="btn btn-default" name="login">Submit</button>
-	</fieldset>
-</form>
+		  <button type="submit" value="Login" class="btn btn-default" name="login">Submit</button>
+		</fieldset>
+	</form>
+</div>
