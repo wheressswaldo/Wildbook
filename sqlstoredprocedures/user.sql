@@ -36,3 +36,16 @@ delimiter ;
 
 #select user_isPasswordValid("Kevin", "abc123");
 #select user_isPasswordValid("Kevin", "nottherightpassword");
+
+drop function if exists user_exists;
+delimiter //
+create function user_exists(username varchar(128))
+	returns boolean
+	reads sql data
+begin
+	return exists(select 1 from user where user.username = username);
+end //
+delimiter ;
+
+select user_exists("Kevin");
+select user_exists("Kevin1");
