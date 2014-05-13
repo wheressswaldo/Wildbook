@@ -1,6 +1,6 @@
 <?php 
 	require_once 'functions.php';
-
+	require 'template.php';
 	
 	$have_error=false;
 	$ErrorArray=array();
@@ -11,6 +11,11 @@
 	}
 	else {
 		$username = $_SESSION['username'];
+		if(isset($_GET["username"]))
+		{
+			$username = $_GET["username"];
+		}
+		
 		$stmt = "select profile_exists('$username');";
 		$result=$con->query($stmt);
 		$row = $result->fetch_array();
@@ -19,9 +24,7 @@
 			$have_error=true;
 			$ErrorArray[] = "Profile doesn't exist";
 			echo 
-				'<div class="profile"> 
-					<a href="createprofile.php">You don\'t have a profile.  Create a profile</a><br>
-				</div>';
+				'<div class="profile">'.$username.'\'s Profile doesn\'t exist.<br></div>';	
 		}
 		else
 		{
@@ -43,7 +46,7 @@
 			$description = $row[6];
 			$gender = $row[4];
 			echo '<div class="profile">
-					<a href="editprofile.php">Edit your profile</a><br>
+
 					<!-- profile pic to do store in filesystem rather than db -->
 					<table cellspacing="1" cellpadding="0" border="0">
 						<thead>
@@ -58,7 +61,7 @@
 							<tr><td>Description</td><td>'.$row[6].'</td></tr>
 						</tbody>
 					</table>
-					<a href="editprofile.php">Edit your profile</a><br>
+
 				</div>';
 				
 		}
