@@ -122,7 +122,7 @@ create table likeActivity
 	foreign key(activityID) references Activity(activityID)
 );
 
-create table likeActivityatLocation
+create table activityAtLocation
 (
 	username varchar(128) not null,
 	activityID int not null,
