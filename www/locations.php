@@ -18,6 +18,7 @@
 		$tester = 0;
 		while($row = $result->fetch_array())
 		{
+			$locationid = $row[0];
 			$locationName = $row[1];
 			$longitude = $row[2];
 			$latitude = $row[3];
@@ -29,7 +30,14 @@
 					<div class='caption'>
 						<h3> $locationName </h3>
 						<h4> $longitude, $latitude </h4>
-					</div>
+						<h5> Good for: ";
+			if($a = mysqli_query($con, "select * from activityatlocation natural join activity where locationid='$locationid'")){
+				while ($b = $a->fetch_array()){
+					echo "<a href='activity.php?activityID=$b[0]'> $b[3] </a>";
+				}
+			}
+			echo "</h5>
+				</div>
 				</div>";
 			$count += 1;
 			$tester += 1;

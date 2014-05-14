@@ -59,3 +59,10 @@ VALUES
 INSERT INTO likeEntry(userofEntry, diaryID, userWhoLikes)
 VALUES
 ("bobjoe", 1, "feliciaweathers");
+
+INSERT INTO `activityatlocation` (`username`, `activityID`, `locationID`)
+VALUES
+('bobjoe', 1, 1),
+('michaelsweeny', 1, 3),
+('feliciaweathers', 2, 2),
+('bobjoe', 3, 1);
