@@ -1,8 +1,3 @@
-<html>
-<head>
-<title>Login - Wildbook</title>
-</head>
-
 <?php 
 require_once 'functions.php';
 $have_error=false;
@@ -23,17 +18,17 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
     }
 
 	if(!$have_error){
-		$result=mysqli_query($con, "select * from `user` where username='$username' and password='$password';");
-		if($result){
-			if($result->num_rows==1){
-				$row=$result->fetch_array();
-				session_start();
-				//$userid=$row['userid'];
-				$_SESSION['username']=$username;
-				//$_SESSION['userid']=$userid;
-				header( "Location: home.php");
+		$stmt = "select user_isPasswordValid('$username', '$password');";
+		$result=$con->query($stmt);
+		$row = $result->fetch_array();
 		
-			}
+		if($row[0]){
+			echo "hello";
+			session_start();
+			//$userid=$row['userid'];
+			$_SESSION['username']=$username;
+			$_SESSION['userid']=$userid;
+			header( "Location: home.php");
 		}
 		else{
 			$have_error = true;
@@ -47,26 +42,19 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
 	}
 }
 ?>
+<form method ="POST" id="login">
+	<fieldset>
+	  <div class="form-group">
+		
+		<input type="text" class="form-control" id = "username" name="username" placeholder="Username" value="">
+	  </div>
+	  <div class="form-group">
 
-<body style="background:none">
-
-
-        <form method ="POST">
-        <fieldset>
-          <div class="form-group">
-            <label for="username">USERNAME</label>
-            <input type="text" class="form-control" id = "username" name="username" placeholder="Username" value="">
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="">
-          </div>
-		  
-          <button type="submit" value="Login" class="btn btn-default" name="login">Submit</button>
-        </fieldset>
-        </form>
+		<input type="password" class="form-control" id="password" name="password" placeholder="Password" value="">
+	  </div>
+	  
+	  <button type="submit" value="Login" class="btn btn-default" name="login">Submit</button>
+	</fieldset>
+</form>
 
 
-
-</body>
-</html>

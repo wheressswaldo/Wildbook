@@ -20,3 +20,4 @@ if($isLoggedIn){
         <a id="signup" class="btn btn-default btn-lg" href="/wildbook/signup.php">Sign Up</a>
     </div>
 </body>
+</html>
