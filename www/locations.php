@@ -33,7 +33,7 @@
 						<h5> Good for: ";
 			if($a = mysqli_query($con, "select * from activityatlocation natural join activity where locationid='$locationid'")){
 				while ($b = $a->fetch_array()){
-					echo "<a href='activity.php?activityID=$b[0]'> $b[3] </a>";
+					echo "<a href='activity.php'> $b[3] </a>";
 				}
 			}
 			echo "</h5>
