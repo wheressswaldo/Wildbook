@@ -40,7 +40,7 @@
 			  <ul class="dropdown-menu">
 				<li><a href="friends.php">Friends</a></li>
 				<li><a href="locations.php">Locations</a></li>
-				<li><a href="activities">Activities</a></li>
+				<li><a href="activities.php">Activities</a></li>
 			  </ul>
 			</li>
 		  </ul>
