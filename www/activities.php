@@ -1,39 +1,35 @@
 <?php 
 	require_once 'functions.php';
 	require 'template.php';
-
 	if (!checkLogin()){
 		header('Location: index.php');
 	}
 	else{
 		$stmt =	 	"SELECT *
-					FROM location;";
+					FROM activity;";
 		$result = $con->query($stmt);
-		echo "<div><h3 id='title'>Locations</h3>
-				<a id='button' href='addLocation.php' class='btn btn-primary' role='button'>
-					Add New Location
+		echo "<div><h3 id='title'>Activities</h3>
+				<a id='button' href='addActivity.php' class='btn btn-primary' role='button'>
+					Add New Activity
 				</a><br><div>";
-		echo "<div id='locations'><div class='row'>";
+		echo "<div id='activities'><div class='row'>";
 		$count = 0;
 		$tester = 0;
 		while($row = $result->fetch_array())
 		{
-			$locationid = $row[0];
-			$locationName = $row[1];
-			$longitude = $row[2];
-			$latitude = $row[3];
+			$activityid = $row[0];
+			$activityname = $row[1];
 			$tempImage = "kitten" . (string)$tester . ".jpg";
 			echo "<div class='col-xs-6 col-md-3'>
 					<a href='#' class='thumbnail'>
 						<img src='$tempImage' 'data-src='holder.js/100%x180' alt='...' style='min-height:300px;height:300px;'>
 					</a>
 					<div class='caption'>
-						<h3> $locationName </h3>
-						<h4> $longitude, $latitude </h4>
-						<h5> Good for: ";
-			if($a = mysqli_query($con, "select * from activityatlocation natural join activity where locationid='$locationid'")){
+						<h3> $activityname </h3>
+						<h5> You can do this at: ";
+			if($a = mysqli_query($con, "select * from activityatlocation natural join location where activityid='$activityid'")){
 				while ($b = $a->fetch_array()){
-					echo "<a href='activities.php'> $b[3] </a>";
+					echo "<a href='locations.php'> $b[3] </a>";
 				}
 			}
 			echo "</h5>
@@ -57,7 +53,7 @@
 					position: relative;
 					left: 30px;
 				}
-				#locations{
+				#activities{
 					position: relative;
 					left: 250px;
 				}
