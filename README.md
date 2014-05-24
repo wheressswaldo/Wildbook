@@ -13,5 +13,4 @@ Basically, it's a super simplified version of facebook.
 
 
 ----------
-Outdated:
-Will update with final files if I have time.
+Updated, but some functions of the site does not work. Primarily, the image uploading feature. Everything else should work fine though.
