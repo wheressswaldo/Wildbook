@@ -6,9 +6,9 @@
 		<!-- will use bootstrap later -->
 		<link href = "css/bootstrap.css" rel = "stylesheet">
 		
-		<!-- Load jQuery library -->
+		<!-- Load jQuery library 
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		
+		-->
 		<!-- Load custom js -->
 		<script type="text/javascript" src="scripts/custom.js"></script>			
 	</head>
@@ -108,7 +108,10 @@
 	}
 	</style>
 	
-	<!-- Load jQuery library Doesn't work with search just followed a tut. but the other jquery works
-		<script src="js/jquery.js"></script> -->
+	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.js"></script>
+	<!--
+	Not sure why but this breaks search
 	
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script> -->

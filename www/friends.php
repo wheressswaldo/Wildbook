@@ -70,3 +70,8 @@
 	}
 	
 ?>
+<a href="friendRequests.php">
+				<button type="button" class="btn btn-default btn-md">
+				 Friend Requests
+				</button>
+				</a>

@@ -2,6 +2,39 @@
 	require_once 'functions.php';
 	require 'template.php';
 	
+	function getRelationship($con,$username,$target)
+	{
+		if($username != $target)
+		{
+			$stmt = "select 1 from ((SELECT username2 as friends
+					FROM FriendsWith 
+					WHERE username1 = '$target') UNION 
+					(SELECT username1 as friends
+					FROM FriendsWith
+					WHERE username2 = '$target')) as tbl1
+					where friends = '$username';";
+			$result = $con->query($stmt);	
+			$row = $result->fetch_array();
+			if($row[0])
+			{
+				return "friend";
+			}
+			else 
+			{
+				$stmt = "select 1 from friendrequest where usernameFrom = '$username' and usernameTo = '$target';";
+				$result = $con->query($stmt);	
+				$row = $result->fetch_array();
+				if($row[0])
+				{
+					return "friendreq";
+				} else return "notfriend";
+			}
+		}
+		else return "";
+	}
+
+	
+	
 	function getPermission($privacy, $username, $target, $con)
 	{
 		if(!isset($_GET["username"]) or $username = $_GET["username"]) return true;
@@ -70,6 +103,7 @@
 	$profilepic = "";
 	$privacy = "";
 	$privacyt = "";
+	$addfriend = "";
 	
 	if (!checkLogin()){
 		$have_error=true;
@@ -111,6 +145,22 @@
 				else if($privacy =="3"){$privacyt="Friends";}
 				else if($privacy =="4"){$privacyt="Private";}
 				else{$privacy="";}
+				
+				
+				$user = $_SESSION['username']; 
+				$target = $username;
+				if(getRelationship($con,$user,$target) == "notfriend")
+				{
+					$addfriend = '<a href="addfriend.php?username='.$target.'" class="btn btn-primary" role="button">
+					   Add Friend
+					</a>';
+				}
+				else if(getRelationship($con,$user,$target) == "friendreq")
+				{
+					$addfriend = '<a href="" class="btn btn-primary" role="button">
+						   Added
+						</a>';
+				}
 			}				
 		}
 	}
@@ -137,9 +187,33 @@
 			<a href="#" class="btn btn-primary" role="button">
                Friends
             </a> 
+			<?=$addfriend?>
 			</p>
 		</div>
 	</div>
+</div>
+
+<div>
+<?php
+	require_once 'functions.php';
+	require 'display.php';
+	
+	if (!checkLogin()){
+		$have_error=true;
+		$ErrorArray[] = "Username is empty";
+	}
+	else {
+		$username = $_SESSION['username'];
+		if(isset($_GET["username"])) {$username = $_GET["username"];}
+		$stmt = "select * from diaryEntry where username= '$username';";
+		$result = $con->query($stmt);	
+		
+		while($row = $result->fetch_array())
+		{			
+			displayEntry($row["username"], $row["diaryTitle"],$row["diaryDesc"],$row["timeposted"], $row["lastedited"]);		
+		}
+	}
+?>
 </div>
 </body>
 </html>
