@@ -11,7 +11,7 @@ day to day activities. In addition, users can create their own customized profil
 as well as being able to request and accept friends with other users. They can also recommend activities and locations 
 for others. Many new activities and posts will show up on the news feed on the front page.
 
-Basically, it's a super simplified version of facebook.
+Basically, it's a super simplified version of **Facebook**.
 
 
 ----------
