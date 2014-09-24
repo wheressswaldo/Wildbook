@@ -3,6 +3,8 @@ CS308Final
 
 CS308 Databases Final Project - Wildbook
 
+**Programming Languages Used:** MySQL, PHP, HTML, CSS
+
 ----------
 Wildbook is a rudimentary social network site. Users can sign up, log in, and proceed to post "diary entries" of their
 day to day activities. In addition, users can create their own customized profile where they can say whatever they want,
